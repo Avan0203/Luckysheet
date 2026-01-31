@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "declarationDir": "dist",
+    "rootDir": "src",
+    "strict": false,
+    "skipLibCheck": true,
+    "noEmit": false,
+    "moduleResolution": "node",
+    "module": "ESNext",
+    "target": "ES2015"
+  },
+  "include": ["src/**/*.js"],
+  "exclude": [
+    "node_modules",
+    "src/plugins/js/**",
+    "src/expendPlugins/chart/**/*.umd.min.js"
+  ]
+}

@@ -297,6 +297,10 @@ function copyStaticCssImages(){
 const dev = series(clean, parallel(pluginsCss, plugins, css, pluginsJs, copyStaticHtml, copyStaticFonts, copyStaticAssets, copyStaticImages, copyStaticExpendPlugins, copyStaticDemoData, copyStaticCssImages, core), watcher, serve);
 const build = series(clean, parallel(pluginsCss, plugins, css, pluginsJs, copyStaticHtml, copyStaticFonts, copyStaticAssets, copyStaticImages, copyStaticExpendPlugins, copyStaticDemoData, copyStaticCssImages, core));
 
+// 仅导出样式和静态资源到 dist（不 clean、不打包 JS），供 vite build 后追加到 dist
+const buildStatic = parallel(pluginsCss, plugins, css, copyStaticFonts, copyStaticAssets, copyStaticImages, copyStaticExpendPlugins, copyStaticCssImages);
+
 exports.dev = dev;
 exports.build = build;
+exports.buildStatic = buildStatic;
 exports.default = dev;
