@@ -9,7 +9,7 @@ import { hasPartMC, isEditMode } from '../global/validate';
 import { getdatabyselection, getcellvalue } from '../global/getdata';
 import tooltip from '../global/tooltip';
 import editor from '../global/editor';
-import locale from '../locale/locale';
+import locale from '../locale';
 import Store from '../store';
 
 export function initialMatrixOperation(){

@@ -11,7 +11,7 @@ import editor from "../global/editor";
 import tooltip from "../global/tooltip";
 import func_methods from "../global/func_methods";
 import Store from "../store";
-import locale from "../locale/locale";
+import locale from "../locale";
 import { checkProtectionLocked } from "./protection";
 import escapeHtml from "escape-html";
 

@@ -8,7 +8,7 @@ import luckysheetPostil from './postil';
 import luckysheetDropCell from './dropCell';
 import { rowLocationByIndex, colLocationByIndex } from '../global/location';
 import Store from '../store';
-import locale from '../locale/locale';
+import locale from '../locale';
 import { luckysheetrefreshgrid } from '../global/refresh';
 
 

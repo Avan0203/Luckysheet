@@ -1,4 +1,4 @@
-import locale from '../locale/locale';
+import locale from '../locale';
 import luckysheetConfigsetting from './luckysheetConfigsetting';
 
 import { getObjType, camel2split } from '../utils/util';

@@ -7,7 +7,7 @@ import { selectHightlightShow } from './select';
 import { luckysheetMoveEndCell } from './sheetMove';
 import { luckysheetlodingHTML } from '../controllers/constant';
 import server from './server';
-import locale from '../locale/locale';
+import locale from '../locale';
 import Store from '../store';
 import menuButton from './menuButton';
 import conditionformat from './conditionformat';

@@ -27,7 +27,7 @@ import { luckysheetRangeLast } from '../global/cursorPos';
 import formula from '../global/formula';
 import cleargridelement from '../global/cleargridelement';
 import tooltip from '../global/tooltip';
-import locale from '../locale/locale';
+import locale from '../locale';
 import {enterKeyControll} from './inlineString';
 import Store from '../store';
 

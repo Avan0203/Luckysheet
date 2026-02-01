@@ -1,5 +1,5 @@
 import Store from '../store';
-import locale from '../locale/locale';
+import locale from '../locale';
 import { modelHTML } from './constant';
 import { getSheetIndex } from '../methods/get';
 import { setluckysheet_scroll_status } from '../methods/set';

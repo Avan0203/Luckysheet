@@ -34,7 +34,7 @@ import luckysheetsizeauto from "./resize";
 import server from "./server";
 import { checkProtectionAuthorityNormal } from "./protection";
 import Store from "../store";
-import locale from "../locale/locale";
+import locale from "../locale";
 import numeral from "numeral";
 import { luckysheetlodingHTML } from "../controllers/constant";
 

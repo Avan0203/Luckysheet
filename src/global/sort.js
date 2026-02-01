@@ -7,7 +7,7 @@ import { rowlenByRange } from './getRowlen';
 import { jfrefreshgrid } from './refresh';
 import {checkProtectionAuthorityNormal} from '../controllers/protection';
 import Store from '../store';
-import locale from '../locale/locale';
+import locale from '../locale';
 import numeral from 'numeral';
 
 //数据排序方法

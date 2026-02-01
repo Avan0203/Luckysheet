@@ -1,3 +1,4 @@
+import './css/luckysheet.css'
 import './utils/math'
 import { luckysheet } from './core'
 import __firefox from './utils/polyfill'

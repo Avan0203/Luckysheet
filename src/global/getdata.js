@@ -6,7 +6,7 @@ import editor from './editor';
 import { dynamicArrayCompute } from './dynamicArray';
 import sheetmanage from '../controllers/sheetmanage';
 import { isInlineStringCT,isInlineStringCell,convertCssToStyleList } from '../controllers/inlineString';
-import locale from '../locale/locale';
+import locale from '../locale';
 import Store from '../store';
 
 //Get selection range value

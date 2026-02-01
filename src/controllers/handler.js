@@ -65,7 +65,7 @@ import { genarate, update } from "../global/format";
 import method from "../global/method";
 import { getBorderInfoCompute } from "../global/border";
 import { luckysheetDrawMain } from "../global/draw";
-import locale from "../locale/locale";
+import locale from "../locale";
 import Store from "../store";
 import { createLuckyChart, hideAllNeedRangeShow } from "../expendPlugins/chart/plugin";
 import luckysheetformula from "../global/formula";

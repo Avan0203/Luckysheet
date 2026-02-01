@@ -50,7 +50,7 @@ import {
 } from "../utils/util";
 import { openProtectionModal, checkProtectionFormatCells, checkProtectionNotEnable } from "./protection";
 import Store from "../store";
-import locale from "../locale/locale";
+import locale from "../locale";
 import { checkTheStatusOfTheSelectedCells, frozenFirstRow, frozenFirstColumn } from "../global/api";
 
 const menuButton = {

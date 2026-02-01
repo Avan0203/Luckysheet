@@ -7,7 +7,7 @@ import { getSheetIndex } from '../methods/get';
 import { setluckysheet_scroll_status } from '../methods/set';
 import { replaceHtml } from '../utils/util';
 import Store from '../store';
-import locale from '../locale/locale';
+import locale from '../locale';
 import tooltip from '../global/tooltip';
 import method from '../global/method';
 

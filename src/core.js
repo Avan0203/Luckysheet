@@ -1,11 +1,10 @@
 import defaultSetting from "./config.js";
 import { common_extend } from "./utils/util";
 import Store from "./store";
-import { locales } from "./locale/locale";
+import { locales } from "./locale";
 import server from "./controllers/server";
 import luckysheetConfigsetting from "./controllers/luckysheetConfigsetting";
 import sheetmanage from "./controllers/sheetmanage";
-import luckysheetsizeauto from "./controllers/resize";
 import luckysheetHandler from "./controllers/handler";
 import { initialFilterHandler } from "./controllers/filter";
 import { initialMatrixOperation } from "./controllers/matrixOperation";
@@ -34,8 +33,7 @@ import Mandarin from "flatpickr/dist/l10n/zh.js";
 import { initListener } from "./controllers/listener";
 import { hideloading, showloading } from "./global/loading.js";
 import { luckysheetextendData } from "./global/extend.js";
-import { initChat } from './demoData/chat.js'
-
+// chat 已拆至 src/data/chat.js，主包不打包；需时可由业务侧单独引入并调用 initChat()
 let luckysheet = {};
 
 // mount api
@@ -182,7 +180,6 @@ luckysheet.create = function (setting) {
         });
     }
 
-    initChat()
 };
 
 function initialWorkBook() {

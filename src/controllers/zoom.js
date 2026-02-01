@@ -1,5 +1,5 @@
 import Store from '../store';
-import locale from '../locale/locale';
+import locale from '../locale';
 import { replaceHtml } from '../utils/util';
 import sheetmanage from './sheetmanage';
 import {changeSheetContainerSize} from './resize';

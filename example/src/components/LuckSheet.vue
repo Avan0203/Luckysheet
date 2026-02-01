@@ -11,11 +11,8 @@ import { ref, onMounted } from 'vue'
 import { exportExcel } from '../export'
 import LuckyExcel from 'luckyexcel';
 
-// Luckysheet 样式（从本地包 dist 引入，需先 pnpm build 根项目）
-import 'luckysheet/dist/plugins/css/pluginsCss.css';
-import 'luckysheet/dist/plugins/plugins.css';
-import 'luckysheet/dist/css/luckysheet.css';
-import 'luckysheet/dist/assets/iconfont/iconfont.css';
+// Luckysheet 样式（ESM 库统一入口，需先 pnpm build 根项目）
+import 'luckysheet/dist/luckysheet.css';
 
 const jsonData = ref({})
 

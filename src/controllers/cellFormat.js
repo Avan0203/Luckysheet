@@ -5,7 +5,7 @@ import sheetmanage from './sheetmanage';
 import menuButton from './menuButton';
 import {checkProtectionNotEnable} from './protection';
 import { jfrefreshgrid } from '../global/refresh';
-import locale from '../locale/locale';
+import locale from '../locale';
 import { setcellvalue } from '../global/setdata';
 
 

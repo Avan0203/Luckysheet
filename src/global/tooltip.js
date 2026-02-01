@@ -1,7 +1,7 @@
 import { modelHTML, luckysheetchartpointconfigHTML, luckysheetToolHTML } from '../controllers/constant';
 import browser from './browser';
 import { replaceHtml } from '../utils/util';
-import locale from '../locale/locale';
+import locale from '../locale';
 import server from '../controllers/server';
 
 const tooltip = {
@@ -116,14 +116,18 @@ const tooltip = {
         });
 
         $('#luckysheet-confirm .luckysheet-model-copy-btn').click(function(){
-            let dt = new clipboard.DT();
-            dt.setData("text/html", "<img src='"+ imgurl +"'>");
             if(browser.isIE() == "1"){
                 alert(locale_screenshot.rightclickTip);
-            }
-            else{
-                clipboard.write(dt);
-                alert(locale_screenshot.successTip);  
+            } else if (navigator.clipboard && navigator.clipboard.write) {
+                const html = "<img src='" + imgurl + "'>";
+                const blob = new Blob([html], { type: 'text/html' });
+                navigator.clipboard.write([new ClipboardItem({ 'text/html': blob })]).then(function () {
+                    alert(locale_screenshot.successTip);
+                }).catch(function () {
+                    alert(locale_screenshot.rightclickTip);
+                });
+            } else {
+                alert(locale_screenshot.rightclickTip);
             }
         });
     },

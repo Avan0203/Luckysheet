@@ -10,7 +10,7 @@ import luckysheetsizeauto from './resize';
 import server from './server';
 import { selectHightlightShow } from './select';
 import Store from '../store';
-import locale from '../locale/locale';
+import locale from '../locale';
 
 //交替颜色
 const alternateformat = {

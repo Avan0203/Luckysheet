@@ -14,7 +14,7 @@ import { genarate, update } from "../global/format";
 import { getSheetIndex } from "../methods/get";
 import { replaceHtml, getObjType, luckysheetfontformat } from "../utils/util";
 import Store from "../store";
-import locale from "../locale/locale";
+import locale from "../locale";
 import imageCtrl from "./imageCtrl";
 
 const selection = {

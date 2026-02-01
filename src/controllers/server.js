@@ -15,9 +15,8 @@ import { getObjType, replaceHtml, getByteLen } from '../utils/util';
 import { getSheetIndex } from '../methods/get';
 import Store from '../store';
 import { collaborativeEditBox } from './select'
-import locale from '../locale/locale';
+import locale from '../locale';
 import dayjs from "dayjs";
-import json from '../global/json';
 import luckysheetConfigsetting from './luckysheetConfigsetting';
 import {customImageUpdate} from './imageUpdateCtrl';
 import method from '../global/method';

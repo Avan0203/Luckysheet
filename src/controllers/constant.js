@@ -1,4 +1,4 @@
-import locale from "../locale/locale";
+import locale from "../locale";
 import Store from "../store";
 import luckysheetConfigsetting from "./luckysheetConfigsetting";
 import { getObjType } from "../utils/util";

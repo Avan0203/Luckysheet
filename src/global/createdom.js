@@ -18,7 +18,7 @@ import editor from './editor';
 import rhchInit from './rhchInit';
 import { replaceHtml } from '../utils/util';
 import Store from '../store';
-import locale from '../locale/locale';
+import locale from '../locale';
 
 export default function luckysheetcreatedom(colwidth, rowheight, data, menu, title) {
     // //最少30行

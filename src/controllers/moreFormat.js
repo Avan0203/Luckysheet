@@ -5,7 +5,7 @@ import editor from '../global/editor';
 import tooltip from '../global/tooltip';
 import { isEditMode } from '../global/validate';
 import Store from '../store';
-import locale from '../locale/locale';
+import locale from '../locale';
 
 //更多格式
 const luckysheetMoreFormat = {

@@ -13,7 +13,7 @@ import server from './server';
 import menuButton from './menuButton';
 import sheetmanage from './sheetmanage';
 import { getSheetIndex, getRangetxt } from '../methods/get';
-import locale from '../locale/locale';
+import locale from '../locale';
 import Store from '../store';
 
 const dataVerificationCtrl = {

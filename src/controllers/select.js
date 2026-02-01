@@ -7,7 +7,7 @@ import dataVerificationCtrl from './dataVerificationCtrl';
 import { getSheetIndex, getRangetxt } from '../methods/get';
 import Store from '../store';
 import method from '../global/method';
-import locale from '../locale/locale';
+import locale from '../locale';
 import { refreshMenuButtonFocus } from "../global/api";
 
 //公式函数 选区实体框

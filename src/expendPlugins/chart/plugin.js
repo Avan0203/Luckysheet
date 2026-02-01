@@ -2,21 +2,18 @@ import { seriesLoadScripts, loadLinks, $$, arrayRemoveItem } from "../../utils/u
 import { generateRandomKey, replaceHtml } from "../../utils/chartUtil";
 import { getdatabyselection, getcellvalue } from "../../global/getdata";
 import chartInfo from "../../store";
-import formula from "../../global/formula";
 import { luckysheet_getcelldata } from "../../function/func";
 import { getSheetIndex, getRangetxt, getvisibledatacolumn, getvisibledatarow } from "../../methods/get";
 import { rowLocation, colLocation, mouseposition } from "../../global/location";
 import { setluckysheet_scroll_status } from "../../methods/set";
 import {
-    luckysheetMoveHighlightCell,
-    luckysheetMoveHighlightCell2,
-    luckysheetMoveHighlightRange,
     luckysheetMoveHighlightRange2,
     luckysheetMoveEndCell,
 } from "../../controllers/sheetMove";
 import { isEditMode } from "../../global/validate";
 import luckysheetsizeauto from "../../controllers/resize";
 import Store from "../../store";
+import chartmix from "chartmix";
 
 let _rowLocation = rowLocation;
 let _colLocation = colLocation;
@@ -27,13 +24,11 @@ const dependScripts = [
     "https://unpkg.com/vuex@3.4.0/dist/vuex.min.js",
     "https://unpkg.com/element-ui@2.13.2/lib/index.js",
     "https://unpkg.com/echarts@4.8.0/dist/echarts.min.js",
-    "./expendPlugins/chart/chartmix.umd.min.js",
 ];
 
 const dependLinks = [
     "https://unpkg.com/element-ui@2.13.2/lib/theme-chalk/index.css",
     "./expendPlugins/chart/chartmix.css",
-    // 'http://26.26.26.1:8000/chartmix.css'
 ];
 
 // Initialize the chart component
@@ -43,11 +38,12 @@ function chart(options, config, isDemo) {
 
     seriesLoadScripts(dependScripts, null, function() {
         const store = new Vuex.Store();
-        console.info("chartmix::", chartmix.default);
+        const chartmixModule = chartmix && chartmix.default != null ? chartmix.default : chartmix;
+        console.info("chartmix::", chartmixModule);
 
-        Vue.use(chartmix.default, { store });
+        Vue.use(chartmixModule, { store });
         let outDom = document.getElementsByTagName("body")[0];
-        chartmix.default.initChart(outDom, chartInfo.lang);
+        chartmixModule.initChart(outDom, chartInfo.lang);
 
         $(".chartSetting").css({
             top: "1px",
@@ -71,19 +67,19 @@ function chart(options, config, isDemo) {
             display: "none",
         });
 
-        chartInfo.createChart = chartmix.default.createChart;
-        chartInfo.highlightChart = chartmix.default.highlightChart;
-        chartInfo.deleteChart = chartmix.default.deleteChart;
-        chartInfo.resizeChart = chartmix.default.resizeChart;
-        chartInfo.changeChartRange = chartmix.default.changeChartRange;
-        chartInfo.changeChartCellData = chartmix.default.changeChartCellData;
-        chartInfo.getChartJson = chartmix.default.getChartJson;
+        chartInfo.createChart = chartmixModule.createChart;
+        chartInfo.highlightChart = chartmixModule.highlightChart;
+        chartInfo.deleteChart = chartmixModule.deleteChart;
+        chartInfo.resizeChart = chartmixModule.resizeChart;
+        chartInfo.changeChartRange = chartmixModule.changeChartRange;
+        chartInfo.changeChartCellData = chartmixModule.changeChartCellData;
+        chartInfo.getChartJson = chartmixModule.getChartJson;
         chartInfo.chart_selection = chart_selection();
         chartInfo.chartparam.jfrefreshchartall = jfrefreshchartall;
-        chartInfo.chartparam.changeChartCellData = chartmix.default.changeChartCellData;
-        chartInfo.chartparam.renderChart = chartmix.default.renderChart;
-        chartInfo.chartparam.getChartJson = chartmix.default.getChartJson;
-        chartInfo.chartparam.insertToStore = chartmix.default.insertToStore;
+        chartInfo.chartparam.changeChartCellData = chartmixModule.changeChartCellData;
+        chartInfo.chartparam.renderChart = chartmixModule.renderChart;
+        chartInfo.chartparam.getChartJson = chartmixModule.getChartJson;
+        chartInfo.chartparam.insertToStore = chartmixModule.insertToStore;
 
         // Initialize the rendering chart
         for (let i = 0; i < data.length; i++) {

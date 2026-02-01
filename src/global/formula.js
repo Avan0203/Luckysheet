@@ -36,7 +36,7 @@ import {
     luckysheet_getSpecialReference,
 } from "../function/func";
 import Store from "../store";
-import locale from "../locale/locale";
+import locale from "../locale";
 import json from "./json";
 import method from "./method";
 

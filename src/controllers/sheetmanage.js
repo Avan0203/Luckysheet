@@ -24,7 +24,7 @@ import luckysheetFreezen from "./freezen";
 import { createFilterOptions, labelFilterOptionState } from "./filter";
 import { selectHightlightShow, selectionCopyShow } from "./select";
 import Store from "../store";
-import locale from "../locale/locale";
+import locale from "../locale";
 import { renderChartShow } from "../expendPlugins/chart/plugin";
 import { changeSheetContainerSize, menuToolBarWidth } from "./resize";
 import { zoomNumberDomBind } from "./zoom";

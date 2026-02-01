@@ -10,7 +10,7 @@ import { modelHTML, luckysheet_CFiconsImg } from './constant';
 import server from './server';
 import { selectionCopyShow } from './select';
 import sheetmanage from './sheetmanage';
-import locale from '../locale/locale';
+import locale from '../locale';
 import {checkProtectionFormatCells} from './protection';
 import Store from '../store';
 import dayjs from 'dayjs'

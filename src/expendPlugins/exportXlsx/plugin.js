@@ -1,5 +1,5 @@
 
-import locale from '../../locale/locale';
+import locale from '../../locale';
 import { modelHTML } from "../../controllers/constant";
 import { arrayRemoveItem, replaceHtml } from '../../utils/util';
 import tooltip from '../../global/tooltip';

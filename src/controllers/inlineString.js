@@ -1,6 +1,6 @@
 import {getFontStyleByCell, textTrim} from "../global/getdata";
 import {selectTextContent,selectTextContentCross,selectTextContentCollapse} from '../global/cursorPos';
-import locale from '../locale/locale';
+import locale from '../locale';
 import Store from '../store';
 
 export const inlineStyleAffectAttribute = {"bl":1, "it":1 , "ff":1, "cl":1, "un":1,"fs":1,"fc":1};

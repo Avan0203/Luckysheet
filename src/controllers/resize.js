@@ -2,7 +2,7 @@ import luckysheetConfigsetting from './luckysheetConfigsetting';
 import luckysheetFreezen from './freezen';
 import { luckysheetrefreshgrid } from '../global/refresh';
 import Store from '../store';
-import locale from '../locale/locale';
+import locale from '../locale';
 import sheetmanage from './sheetmanage';
 import tooltip from '../global/tooltip'
 import { $$, getObjType, camel2split } from "../utils/util";

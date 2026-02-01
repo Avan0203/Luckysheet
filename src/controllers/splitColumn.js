@@ -7,7 +7,7 @@ import { setcellvalue } from '../global/setdata';
 import { getcellvalue } from '../global/getdata';
 import { jfrefreshgrid } from '../global/refresh';
 import Store from '../store';
-import locale from '../locale/locale';
+import locale from '../locale';
 
 //分列
 const luckysheetSplitColumn = {

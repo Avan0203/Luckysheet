@@ -14,7 +14,7 @@ import {
 import { isEditMode } from '../global/validate';
 import formula from '../global/formula';
 import tooltip from '../global/tooltip';
-import locale from '../locale/locale';
+import locale from '../locale';
 import Store from '../store';
 
 export function formulaBarInitial(){

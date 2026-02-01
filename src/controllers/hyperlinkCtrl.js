@@ -12,7 +12,7 @@ import sheetmanage from './sheetmanage';
 import luckysheetFreezen from './freezen';
 import menuButton from './menuButton';
 import { getSheetIndex } from '../methods/get';
-import locale from '../locale/locale';
+import locale from '../locale';
 import Store from '../store';
 
 const hyperlinkCtrl = {

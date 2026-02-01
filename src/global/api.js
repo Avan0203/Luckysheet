@@ -1,7 +1,7 @@
 import Store from "../store";
 import { replaceHtml, getObjType, chatatABC, luckysheetactiveCell } from "../utils/util";
 import { getSheetIndex, getluckysheet_select_save, getluckysheetfile } from "../methods/get";
-import locale from "../locale/locale";
+import locale from "../locale";
 import method from './method';
 import formula from './formula';
 import func_methods from "./func_methods";

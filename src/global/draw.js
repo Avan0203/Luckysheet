@@ -17,7 +17,7 @@ import { getObjType, chatatABC, luckysheetfontformat } from "../utils/util";
 import { isInlineStringCell } from "../controllers/inlineString";
 import method from "./method";
 import Store from "../store";
-import locale from "../locale/locale";
+import locale from "../locale";
 import sheetmanage from "../controllers/sheetmanage";
 
 function luckysheetDrawgridRowTitle(scrollHeight, drawHeight, offsetTop) {

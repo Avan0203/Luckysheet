@@ -7,7 +7,7 @@ import { modelHTML } from './constant';
 import { selectHightlightShow } from './select';
 import conditionformat from './conditionformat';
 import Store from '../store';
-import locale from '../locale/locale';
+import locale from '../locale';
 
 //定位
 const luckysheetLocationCell = {

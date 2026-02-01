@@ -3,7 +3,7 @@ import menuButton from "../controllers/menuButton";
 import { isdatatype, isdatatypemulti } from "../global/datecontroll";
 import { hasChinaword, isRealNum } from "../global/validate";
 import Store from "../store";
-import locale from "../locale/locale";
+import locale from "../locale";
 import numeral from "numeral";
 // import method from '../global/method';
 

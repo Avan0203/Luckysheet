@@ -7,7 +7,7 @@ import { modelHTML } from './constant';
 import { luckysheet_count_show } from './select';
 import { replaceHtml, getObjType } from '../utils/util';
 import Store from '../store';
-import locale from '../locale/locale';
+import locale from '../locale';
 
 //插入函数
 const insertFormula = {

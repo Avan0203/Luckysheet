@@ -16,7 +16,7 @@ import { jfrefreshgrid, jfrefreshgridall, jfrefreshgrid_rhcw } from "../global/r
 import { getcellvalue } from "../global/getdata";
 import tooltip from "../global/tooltip";
 import editor from "../global/editor";
-import locale from "../locale/locale";
+import locale from "../locale";
 import { getMeasureText, getCellTextInfo } from "../global/getRowlen";
 import { luckysheet_searcharray } from "../controllers/sheetSearch";
 import { isInlineStringCell } from "./inlineString";

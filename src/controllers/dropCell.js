@@ -12,7 +12,7 @@ import { selectHightlightShow } from './select';
 import { getSheetIndex } from '../methods/get';
 import { getObjType, replaceHtml } from '../utils/util';
 import Store from '../store';
-import locale from '../locale/locale';
+import locale from '../locale';
 import dayjs from 'dayjs'
 
 //选区下拉

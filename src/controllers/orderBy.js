@@ -19,7 +19,7 @@ import tooltip from '../global/tooltip';
 import editor from '../global/editor';
 import { isdatatype } from '../global/datecontroll';
 import Store from '../store';
-import locale from '../locale/locale';
+import locale from '../locale';
 
 
 export function orderByInitial(){

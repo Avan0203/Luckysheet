@@ -4,7 +4,7 @@ import {luckysheetupdateCell} from './updateCell';
 import { modelHTML } from './constant';
 import { replaceHtml } from '../utils/util';
 import Store from '../store';
-import locale from '../locale/locale';
+import locale from '../locale';
 
 //if公式生成器
 const ifFormulaGenerator = {
