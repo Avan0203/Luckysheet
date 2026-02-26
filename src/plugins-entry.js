@@ -10,11 +10,11 @@ import html2canvas from 'html2canvas';
 import localforage from 'localforage';
 import jStat from 'jstat';
 
-// jQuery 插件（依赖已挂好的 window.jQuery）
+// jQuery 插件（依赖已挂好的 window.jQuery），打包进 luckysheet.esm.js
 import 'spectrum-colorpicker';
-import 'jquery-ui-dist/jquery-ui.min.js';
-import 'jquery-mousewheel';
-import 'public/js/jquery.sPage.min.js';
+import './js/jquery-ui.js';
+import './js/jquery.mousewheel.js';
+import './js/jquery.sPage.esm.js';
 
 // 挂到 window 供主包使用
 window.uuid = { v4: uuidV4 };

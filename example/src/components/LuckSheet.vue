@@ -43,6 +43,7 @@ const loadExcel = (evt:Event) => {
         luckysheet.create({
             container: 'luckySheet', //luckysheet is the container id
             showinfobar: false,
+            lang:'zh',
             data: exportJson.sheets,
             title: exportJson.info.name,
             userInfo: exportJson.info.name.creator,

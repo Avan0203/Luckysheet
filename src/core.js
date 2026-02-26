@@ -251,4 +251,11 @@ luckysheet.locales = locales;
 // 获取条件格式渲染的单元格数量
 luckysheet.getConditionFormatCells = getConditionFormatCells;
 
+// 显式挂载 api 中的常用方法，便于 d.ts 自动生成类型（否则 common_extend 合并的成员不会出现在类型中）
+luckysheet.getAllSheets = api.getAllSheets;
+luckysheet.toJson = api.toJson;
+luckysheet.refresh = api.refresh;
+luckysheet.getCellValue = api.getCellValue;
+luckysheet.setCellValue = api.setCellValue;
+
 export { luckysheet };

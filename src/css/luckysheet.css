@@ -2,8 +2,8 @@
  * Luckysheet 样式入口：统一 @import，由 Vite 打包为 dist/luckysheet.css
  */
 @import 'spectrum-colorpicker/spectrum.css';
-@import 'jquery-ui-dist/jquery-ui.min.css';
-@import 'jquery-ui-dist/jquery-ui.theme.min.css';
+@import 'public/style/jquery-ui.css';
+@import 'public/style/jquery-ui.theme.css';
 @import 'flatpickr/dist/themes/light.css';
 @import 'font-awesome/css/font-awesome.min.css';
 @import 'public/style/jquery.sPage.css';

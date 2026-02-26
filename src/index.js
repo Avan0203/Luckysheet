@@ -1,3 +1,6 @@
+// 最先执行：jQuery、spectrum、uuid 等挂到 window，供 luckysheet 使用
+import './plugins-entry.js'
+
 import './css/luckysheet.css'
 import './utils/math'
 import { luckysheet } from './core'

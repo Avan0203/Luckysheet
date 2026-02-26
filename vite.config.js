@@ -5,6 +5,27 @@ import dts from 'vite-plugin-dts';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 
 const pkg = createRequire(import.meta.url)('./package.json');
+
+// 将 luckysheet 源码中的全局 $ 替换为 window.$（Vite define 对 $ 有 bug）
+function replaceJqueryGlobal() {
+  return {
+    name: 'replace-jquery-global',
+    enforce: 'pre',
+    transform(code, id) {
+      if (!id.includes('node_modules') && (id.includes('src/') || id.includes('src\\'))) {
+        const win$ = 'window.' + '\x24'; // window.$ 避免 replace 中 $ 被转义
+        // 负向后顾：排除 window.$. 和 $$（util.js 的 $$ 函数）
+        return {
+          code: code
+            .replace(/(?<!window\.)(?<!\$)\$\./g, win$ + '.')
+            .replace(/(?<!window\.)(?<!\$)\$\(/g, win$ + '('),
+          map: null,
+        };
+      }
+      return null;
+    },
+  };
+}
 const banner = `/*! @preserve
  * ${pkg.name}
  * version: ${pkg.version}
@@ -32,6 +53,8 @@ export default defineConfig({
     minify: 'esbuild',
     sourcemap: true,
     rollupOptions: {
+      // jQuery、spectrum、uuid 等全部打包进 luckysheet.esm.js，不 external
+      external: [],
       output: {
         banner,
         assetFileNames: (assetInfo) =>
@@ -41,6 +64,7 @@ export default defineConfig({
     target: 'es2015',
   },
   plugins: [
+    replaceJqueryGlobal(),
     viteStaticCopy({
       targets: [
         {
@@ -57,10 +81,10 @@ export default defineConfig({
         // 静态资源已归类到 public/（plugins/images、css、assets/iconfont），由 publicDir 复制到 dist
       ],
     }),
-    // 从 JS 源码（allowJs + JSDoc）自动生成 .d.ts，产出 dist/index.d.ts
+    // 从 JS 源码（allowJs + JSDoc）自动生成 .d.ts；rollupTypes: false 保留入口的 default export（luckysheet）
     dts({
       tsconfigPath: './tsconfig.build.json',
-      rollupTypes: true,
+      rollupTypes: false,
       insertTypesEntry: true,
     }),
   ],
