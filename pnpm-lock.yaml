@@ -90,9 +90,6 @@ importers:
 
   example:
     dependencies:
-      '@uds-luckysheet/core':
-        specifier: workspace:*
-        version: link:../packages/luckysheet
       dayjs:
         specifier: ^1.11.0
         version: 1.11.19
@@ -111,6 +108,9 @@ importers:
       luckyexcel:
         specifier: ^1.0.1
         version: 1.0.1
+      luckysheet:
+        specifier: workspace:*
+        version: link:../packages/luckysheet
       numeral:
         specifier: ^2.0.6
         version: 2.0.6
@@ -212,9 +212,6 @@ importers:
       cross-env:
         specifier: ^7.0.2
         version: 7.0.3
-      standard-version:
-        specifier: ^8.0.2
-        version: 8.0.2
       typescript:
         specifier: 'catalog:'
         version: 5.9.3

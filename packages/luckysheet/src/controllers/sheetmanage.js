@@ -1,5 +1,6 @@
 import { isEditMode } from "../global/validate";
 import cleargridelement from "../global/cleargridelement";
+import localforage from 'localforage';
 import { getdatabyselectionD, getcellvalue, datagridgrowth, getcellFormula } from "../global/getdata";
 import { setcellvalue } from "../global/setdata";
 import luckysheetcreatedom from "../global/createdom";

@@ -1,4 +1,5 @@
-import pako from 'pako'
+import pako from 'pako';
+import localforage from 'localforage';
 import { showloading, hideloading } from '../global/loading';
 import { luckysheetrefreshgrid, jfrefreshgrid_rhcw } from '../global/refresh';
 import editor from '../global/editor'

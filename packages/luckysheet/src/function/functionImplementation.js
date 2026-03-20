@@ -1,3 +1,6 @@
+import dayjs from 'dayjs';
+import jStat from 'jstat';
+import numeral from 'numeral';
 import luckysheetConfigsetting from '../controllers/luckysheetConfigsetting';
 import { luckysheet_getcelldata, luckysheet_parseData, luckysheet_getValue, luckysheet_calcADPMM } from './func';
 import { inverse } from './matrix_methods';
@@ -15,8 +18,7 @@ import { orderbydata } from '../global/sort';
 import { getcellvalue,datagridgrowth } from '../global/getdata';
 import { getObjType, ABCatNum, chatatABC, numFormat } from '../utils/util';
 import Store from '../store';
-import dayjs from 'dayjs';
-import numeral from 'numeral';
+import { setcellvalue } from "../global/setdata";
 // getTargetData 已拆至 src/data/，主包不打包；相关公式需自行提供数据或使用 stub
 const getAirTable = (url, sort_index, sort_order, cb) => { if (typeof cb === 'function') cb([[]]); };
 const companyTargetData = '';
@@ -26,7 +28,7 @@ const companyTargetData12 = '';
 const excelToLuckyArray = () => [[]];
 const excelToArray = () => [];
 const askAIData = () => [[]];
-import { setcellvalue } from "../global/setdata";
+
 
 //公式函数计算
 const functionImplementation = {

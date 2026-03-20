@@ -12,4 +12,11 @@ if (window.addEventListener && (navigator.userAgent.indexOf("Firefox") > 0)) {
     __firefox();
 }
 
-export default luckysheet;
+if(import.meta.env.MODE === 'production'){
+    console.log('luckysheet from dist');
+}else{
+    console.log('luckysheet from src');
+}
+
+
+export { luckysheet };
