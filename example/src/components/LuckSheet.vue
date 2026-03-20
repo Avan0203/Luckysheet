@@ -6,7 +6,7 @@
     <div id="luckySheet"></div>
 </template>
 <script setup lang="ts">
-import luckysheet from 'luckysheet';
+import luckysheet from '@uds-luckysheet/core';
 import { ref, onMounted } from 'vue'
 import { exportExcel } from '../export'
 import LuckyExcel from 'luckyexcel';
