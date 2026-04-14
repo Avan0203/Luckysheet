@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Spectrum ESM Test</title>
+    <meta name="description" content="Test for Spectrum ESM build output">
+    <meta name="author" content="Brian Grinstead and Spectrum contributors">
+
+    <!-- 使用dist目录中的CSS -->
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        h2 {
+            color: #333;
+        }
+        .color-input {
+            margin: 10px 0;
+        }
+        label {
+            display: inline-block;
+            width: 150px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Spectrum Colorpicker ESM Build Test</h1>
+    
+    <!-- 语言切换 -->
+    <div class="test-section">
+        <h2>Language / 语言切换</h2>
+        <div class="color-input">
+            <label for="languageSelect">Select Language:</label>
+            <select id="languageSelect" style="padding: 5px; width: 200px;">
+                <option value="en">English (Default)</option>
+                <option value="zh-cn">简体中文</option>
+                <option value="zh-tw">繁體中文</option>
+            </select>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Basic Usage Test</h2>
+        <div class="color-input">
+            <label for="basic">Basic Input:</label>
+            <input type="text" id="basic" value="#ff0000">
+        </div>
+        
+        <div class="color-input">
+            <label for="withAlpha">With Alpha:</label>
+            <input type="text" id="withAlpha" value="rgba(255, 0, 0, 0.5)">
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Palette Test</h2>
+        <div class="color-input">
+            <label for="palette">With Palette:</label>
+            <input type="text" id="palette" value="#00ff00">
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Flat Mode Test</h2>
+        <div class="color-input">
+            <label>Flat Picker:</label>
+            <input type="text" id="flat" value="#0000ff">
+        </div>
+    </div>
+
+    <!-- 基准测试案例 (来自 testcase.html) -->
+    <div class="test-section">
+        <h2>Basic Test Case (Benchmark)</h2>
+        <p>This is the basic test case from the original demo.</p>
+        <button id="updatePalette" style="padding: 8px 16px; margin: 10px 0; cursor: pointer;">Update Palette</button>
+        <div class="color-input">
+            <label>Full Example:</label>
+            <input type='text' id="full" />
+        </div>
+    </div>
+
+    <!-- 先通过 Vite 预加载 jQuery 并设置到全局 -->
+    <script type="module">
+        import $ from 'jquery';
+        window.$ = $;
+        window.jQuery = $;
+        console.log('jQuery loaded and set to global, version:', $.fn.jquery);
+    </script>
+    
+    <!-- 然后加载测试脚本 -->
+    <script type="module" src="./esm-test.js"></script>
+</body>
+</html>
