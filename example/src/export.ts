@@ -6,12 +6,28 @@ import FileSaver from 'file-saver'
 const exportExcel = function (luckysheet: any, value: string) {
     // 参数为luckysheet.getluckysheetfile()获取的对象
     // 1.创建工作簿，可以为工作簿添加属性
+    
+    console.log('========== 导出时的完整 Luckysheet 数据 ==========')
+    console.log('luckysheet 数据类型:', typeof luckysheet)
+    console.log('luckysheet 是否为数组:', Array.isArray(luckysheet))
+    console.log('luckysheet 完整数据:', JSON.stringify(luckysheet, null, 2))
+    
     const workbook = new Excel.Workbook()
     // 2.创建表格，第二个参数可以配置创建什么样的工作表
     if (Object.prototype.toString.call(luckysheet) === '[object Object]') {
         luckysheet = [luckysheet]
     }
-    luckysheet.forEach(function (table: any) {
+    luckysheet.forEach(function (table: any, index: number) {
+        console.log(`\n===== 工作表 ${index + 1} 信息 =====`)
+        console.log('工作表名称:', table.name)
+        console.log('是否有 images 属性:', 'images' in table)
+        
+        if (table.images) {
+            console.log('images 数据:', JSON.stringify(table.images, null, 2))
+        }
+        
+        console.log('data 数组长度:', table.data?.length)
+        
         if (table.data.length === 0) return true
         // ws.getCell('B2').fill = fills.
         const worksheet = workbook.addWorksheet(table.name)
@@ -21,8 +37,15 @@ const exportExcel = function (luckysheet: any, value: string) {
         setStyleAndValue(table.data, worksheet)
         setMerge(merge, worksheet)
         setBorder(borderInfo, worksheet)
+        // 4.设置图片
+        if (table.images) {
+            // 传递 visibledatarow 和 visibledatacolumn 用于精确计算位置
+            setImages(table.images, worksheet, workbook, table.visibledatarow, table.visibledatacolumn)
+        }
         return true
     })
+
+    console.log('\n========== 数据处理完成，开始生成 Excel ==========')
 
     // return
     // 4.写入 buffer
@@ -86,6 +109,138 @@ var setBorder = function (luckyBorderInfo: any, worksheet: any) {
         }
         // console.log(rang.column_focus + 1, rang.row_focus + 1)
         // worksheet.getCell(rang.row_focus + 1, rang.column_focus + 1).border = border
+    })
+}
+
+var setImages = function (images: any, worksheet: any, workbook: any, visibledatarow?: any, visibledatacolumn?: any) {
+    console.log('开始处理图片...', images)
+    console.log('visibledatarow:', visibledatarow)
+    console.log('visibledatacolumn:', visibledatacolumn)
+    
+    Object.keys(images).forEach(function (imageId) {
+        const image = images[imageId]
+        console.log('处理图片:', imageId, image)
+        
+        try {
+            // 获取图片的 base64 数据
+            const base64Data = image.src
+            
+            // 从 base64 中提取图片类型和数据
+            const matches = base64Data.match(/^data:image\/([a-zA-Z]+);base64,(.+)$/)
+            if (!matches) {
+                console.error('无法解析图片数据:', imageId)
+                return
+            }
+            
+            const imageType = matches[1] // 'jpeg', 'png', etc.
+            const imageData = matches[2] // base64 数据部分
+            
+            // 将 base64 转换为 Uint8Array（浏览器环境）
+            const binaryString = atob(imageData)
+            const bytes = new Uint8Array(binaryString.length)
+            for (let i = 0; i < binaryString.length; i++) {
+                bytes[i] = binaryString.charCodeAt(i)
+            }
+            
+            // 添加图片到工作簿
+            const imageIdInWorkbook = workbook.addImage({
+                buffer: bytes,
+                extension: imageType.toLowerCase()
+            })
+            
+            // 计算图片位置（从像素转换为 Excel 行列）
+            // 优先使用 default 中的位置，如果没有则使用 fixedLeft/fixedTop
+            const left = image.default?.left !== undefined ? image.default.left : (image.fixedLeft || 0)
+            const top = image.default?.top !== undefined ? image.default.top : (image.fixedTop || 0)
+            const width = image.default?.width || image.originWidth || 100
+            const height = image.default?.height || image.originHeight || 100
+            
+            console.log('图片位置信息:', { left, top, width, height })
+            
+            let startCol = 0
+            let startRow = 0
+            let endCol = 0
+            let endRow = 0
+            
+            // 如果有 visibledatarow 和 visibledatacolumn，使用它们来精确计算
+            if (visibledatarow && visibledatacolumn) {
+                // 找到 top 对应的行索引
+                for (let i = 0; i < visibledatarow.length; i++) {
+                    if (top < visibledatarow[i]) {
+                        startRow = i
+                        break
+                    }
+                    if (i === visibledatarow.length - 1) {
+                        startRow = visibledatarow.length
+                    }
+                }
+                
+                // 找到 left 对应的列索引
+                for (let j = 0; j < visibledatacolumn.length; j++) {
+                    if (left < visibledatacolumn[j]) {
+                        startCol = j
+                        break
+                    }
+                    if (j === visibledatacolumn.length - 1) {
+                        startCol = visibledatacolumn.length
+                    }
+                }
+                
+                // 计算结束位置（图片的右下角）
+                const bottom = top + height
+                const right = left + width
+                
+                // 找到 bottom 对应的行索引
+                for (let i = 0; i < visibledatarow.length; i++) {
+                    if (bottom <= visibledatarow[i]) {
+                        endRow = i
+                        break
+                    }
+                    if (i === visibledatarow.length - 1) {
+                        endRow = visibledatarow.length
+                    }
+                }
+                
+                // 找到 right 对应的列索引
+                for (let j = 0; j < visibledatacolumn.length; j++) {
+                    if (right <= visibledatacolumn[j]) {
+                        endCol = j
+                        break
+                    }
+                    if (j === visibledatacolumn.length - 1) {
+                        endCol = visibledatacolumn.length
+                    }
+                }
+                
+                console.log('图片覆盖范围:', { 
+                    start: `R${startRow + 1}C${startCol + 1}`, 
+                    end: `R${endRow + 1}C${endCol + 1}`,
+                    pixelSize: `${width}x${height}`
+                })
+            } else {
+                // 降级方案：使用默认列宽和行高
+                const defaultColWidth = 73
+                const defaultRowHeight = 20
+                
+                startCol = Math.floor(left / defaultColWidth)
+                startRow = Math.floor(top / defaultRowHeight)
+                endCol = Math.floor((left + width) / defaultColWidth)
+                endRow = Math.floor((top + height) / defaultRowHeight)
+            }
+            
+            console.log('转换后的位置:', { startCol, startRow, endCol, endRow })
+            
+            // 添加图片到工作表
+            worksheet.addImage(imageIdInWorkbook, {
+                tl: { col: startCol, row: startRow },
+                br: { col: endCol, row: endRow },
+                editAs: 'oneCell'
+            })
+            
+            console.log('图片添加成功:', imageId)
+        } catch (error) {
+            console.error('添加图片失败:', imageId, error)
+        }
     })
 }
 var setStyleAndValue = function (cellArr: any, worksheet: any) {

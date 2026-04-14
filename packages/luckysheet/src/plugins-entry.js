@@ -4,7 +4,6 @@
  */
 import './plugins-jquery-global.js';
 
-// import Clipboard from 'clipboard';
 
 // jQuery 插件（依赖已挂好的 window.jQuery），打包进 luckysheet.esm.js
 import 'spectrum-colorpicker';
