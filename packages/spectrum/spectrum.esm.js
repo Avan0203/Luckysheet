@@ -1,26 +1,46 @@
 /**
  * Spectrum Colorpicker ESM Wrapper
  * 将 UMD 格式的 spectrum.js 包装为 ESM 模块
- * 
- * 注意：由于 spectrum.js 使用 UMD 格式，需要在导入此模块之前
- * 确保 jQuery 已经在全局可用 (window.jQuery)
  */
 
-// 导入 jQuery (spectrum 的依赖)
-import $ from 'jquery';
-
-// 立即设置全局 jQuery，这会在模块求值时执行
-// 但由于 ESM import hoisting，spectrum.js 的 import 会先于此执行
-// 所以这个方案不可靠，需要使用者在使用前手动设置全局 jQuery
-if (typeof window !== 'undefined') {
-  window.jQuery = $;
-  window.$ = $;
+// 关键：直接使用全局 jQuery，而不是导入新的实例
+// 这样可以确保 spectrum 注册到与 luckysheet 相同的 jQuery 上
+let $;
+if (typeof window !== 'undefined' && window.jQuery) {
+  $ = window.jQuery;
+  // console.log('[spectrum-colorpicker] Using existing global jQuery');
+  // console.log('[spectrum-colorpicker] jQuery fn keys:', Object.keys($.fn).length);
+} else {
+  // 如果全局 jQuery 不存在，才导入
+  throw new Error('[spectrum-colorpicker] jQuery must be loaded before spectrum-colorpicker');
 }
 
-// 导入原始的 spectrum.js (UMD 格式会自动检测并注册到 $.fn.spectrum)
-// 警告：如果全局 jQuery 未设置，这里会报错
+// 验证 jQuery 是否有效
+if (!$ || typeof $.fn !== 'object') {
+  throw new Error('[spectrum-colorpicker] Invalid jQuery instance');
+}
+
+// 步骤2: 验证 jQuery 是否已设置
+if (typeof window !== 'undefined') {
+  // console.log('[spectrum-colorpicker] Before importing spectrum.js:');
+  // console.log('  - window.jQuery:', typeof window.jQuery);
+  // console.log('  - window.$.fn:', typeof (window.$ && window.$.fn));
+}
+
+// 步骤3: 导入 spectrum.js (UMD 格式)
+// 此时 window.jQuery 应该已经设置好了
 import './spectrum.js';
 import './spectrum.css';
+
+// 步骤4: 验证 spectrum 是否成功注册
+if (typeof window !== 'undefined') {
+  // console.log('[spectrum-colorpicker] After importing spectrum.js:');
+  // console.log('  - $.fn.spectrum:', typeof ($.fn && $.fn.spectrum));
+  if (typeof $.fn.spectrum !== 'function') {
+    console.error('[spectrum-colorpicker] ERROR: spectrum plugin not registered!');
+    console.error('[spectrum-colorpicker] Available $.fn methods:', Object.keys($.fn || {}).slice(0, 20));
+  }
+}
 // 注意：不要在这里导入 i18n，让使用者按需导入
 // import './i18n/index.js'
 

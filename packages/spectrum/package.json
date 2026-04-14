@@ -10,12 +10,13 @@
             "import": "./dist/spectrum.esm.js",
             "default": "./dist/spectrum.esm.js"
         },
-        "./spectrum.css": "./spectrum.css"
+        "./spectrum-colorpicker.css": "./dist/spectrum-colorpicker.css"
     },
     "files": [
         "dist",
-        "spectrum.css",
-        "i18n"
+        "i18n",
+        "README.md",
+        "package.json"
     ],
     "license": "MIT",
     "keywords": [

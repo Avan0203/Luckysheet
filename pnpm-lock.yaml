@@ -194,8 +194,8 @@ importers:
         specifier: ^1.0.11
         version: 1.0.11
       spectrum-colorpicker:
-        specifier: ^1.8.1
-        version: 1.8.1
+        specifier: workspace:*
+        version: link:../spectrum
       uuid:
         specifier: 'catalog:'
         version: 13.0.0

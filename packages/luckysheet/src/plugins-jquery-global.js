@@ -3,4 +3,11 @@
  * 使用 ?umd 从 public 引入，由 vite-plugin-umd-public 包装 UMD 并导出 window.jQuery。
  */
 import $ from './js/jquery.js';
-window.$ = window.jQuery = $;
+
+// 设置全局 jQuery
+if (typeof window !== 'undefined') {
+  window.$ = window.jQuery = $;
+//   console.log('[plugins-jquery-global] jQuery set to window');
+//   console.log('[plugins-jquery-global] window.jQuery:', typeof window.jQuery);
+//   console.log('[plugins-jquery-global] window.$.fn keys count:', Object.keys($.fn).length);
+}
