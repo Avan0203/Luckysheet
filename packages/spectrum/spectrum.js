@@ -3,20 +3,7 @@
 // Author: Brian Grinstead
 // License: MIT
 
-(function (factory) {
-    "use strict";
-
-    if (typeof define === 'function' && define.amd) { // AMD
-        define(['jquery'], factory);
-    }
-    else if (typeof exports == "object" && typeof module == "object") { // CommonJS
-        module.exports = factory(require('jquery'));
-    }
-    else { // Browser
-        // 明确使用 window.jQuery 以确保在打包环境中也能正确获取全局 jQuery
-        factory(window.jQuery || window.$ || jQuery);
-    }
-})(function($, undefined) {
+const spectrum = function($) {
     "use strict";
 
     var defaultOpts = {
@@ -2339,4 +2326,9 @@
         }
     });
 
-});
+    // 返回 jQuery 实例,支持链式调用和进一步扩展
+    return $;
+
+};
+
+export { spectrum as spectrumFactory}
